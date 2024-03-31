@@ -18,8 +18,4 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
-
-    RewriteCond %{HTTPS} off [OR]
-    RewriteCond %{HTTP_HOST} ^www\. [NC]
-    RewriteRule ^ https://laravel11-inertia-vue.vercel.app%{REQUEST_URI} [L,NE,R=301]
 </IfModule>
