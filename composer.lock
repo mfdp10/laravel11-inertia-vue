@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c2a46fd2ebe60aee4893143de456a876",
+    "content-hash": "8192970f78de877280b4b08777f4e655",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -6120,16 +6120,16 @@
         },
         {
             "name": "tightenco/ziggy",
-            "version": "v2.0.0",
+            "version": "v2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tighten/ziggy.git",
-                "reference": "b362a422a90d4fdd52f1647bb11661216f1eba70"
+                "reference": "3b718738ee61817b90349fa00c53ead85f86e5d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tighten/ziggy/zipball/b362a422a90d4fdd52f1647bb11661216f1eba70",
-                "reference": "b362a422a90d4fdd52f1647bb11661216f1eba70",
+                "url": "https://api.github.com/repos/tighten/ziggy/zipball/3b718738ee61817b90349fa00c53ead85f86e5d0",
+                "reference": "3b718738ee61817b90349fa00c53ead85f86e5d0",
                 "shasum": ""
             },
             "require": {
@@ -6182,9 +6182,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tighten/ziggy/issues",
-                "source": "https://github.com/tighten/ziggy/tree/v2.0.0"
+                "source": "https://github.com/tighten/ziggy/tree/v2.0.5"
             },
-            "time": "2024-02-20T21:12:24+00:00"
+            "time": "2024-03-19T23:36:15+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
