@@ -13,6 +13,7 @@
         "APP_DEBUG": "true",
         "APP_KEY":"base64:ZZ7GjhoBdp3i9dOlyMJu3vLxh8pijnLeZHxOjdbX9Ww=",
         "APP_URL": "https://laravel11-inertia-vue.vercel.app",
+        "ASSET_URL": "https://laravel11-inertia-vue.vercel.app",
  
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
