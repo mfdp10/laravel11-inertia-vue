@@ -2,16 +2,19 @@
     "version": 2,
       "framework": null,
     "functions": {
-        "api/index.php": { "runtime": "vercel-php@0.6.1" }
+        "api/index.php": { "runtime": "vercel-php@0.6.0" }
     },
     "routes": [{
+        "src": "/build(.)",
+        "dest": "/public/assets/"
+    },{
         "src": "/(.*)",
         "dest": "/api/index.php"
     }],
         "env": {
         "APP_NAME": "Laravel 11 - Inertia - Vue",
         "APP_ENV": "production",
-        "APP_DEBUG": "false",
+        "APP_DEBUG": "true",
         
         "APP_URL": "https://php-laravel.vercel.app",
         "VERCEL_DEMO_MODE": "true",
