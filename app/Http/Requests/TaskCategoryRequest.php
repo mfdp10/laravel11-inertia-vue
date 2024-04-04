@@ -25,10 +25,12 @@ class TaskCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name"      => ["required", "string", "max:100", Rule::unique(table: "task_categories", column: "name")->ignore(id: request("task_category"), idColumn: "id")],
-            'is_active' => ['required', new Enum(IsActiveEnum::class)],
+            "name"       => ["required", "string", "max:100", Rule::unique(table: "task_categories", column: "name")->ignore(id: request("task_category"), idColumn: "id")],
+            'image_name' => ['string', "nullable", "max:100"],
+            'is_active'  => ['required', new Enum(IsActiveEnum::class)],
         ];
     }
+
 
     public function messages(): array
     {

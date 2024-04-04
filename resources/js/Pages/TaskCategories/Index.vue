@@ -11,6 +11,8 @@ defineProps({
         type: Object,
         required: true
     },
+    image: { type: String }
+
     // is_active: {
     //     type: Object,
     //     required: true
@@ -31,7 +33,7 @@ const deleteTaskCategory = (id) => {
             </h1>
         </template>
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-
+            {{ image }}
             <div class="p-4 text-sm mb-4 text-gray-800 rounded-lg bg-gray-50 dark:bg-gray-800 dark:text-gray-300"
                 role="alert" v-if="$page.props.user.permissions.includes('task-categories.create')">
                 <Link :href="route('task-categories.create')"
@@ -63,8 +65,10 @@ const deleteTaskCategory = (id) => {
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <th scope="row"
                                 class="hidden sm:table-cell px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <img class="rounded" width="60" :src="'/storage/' + category.image.url" alt="" v-if="category.image">
-                                <img class="rounded" width="60" src="/storage/no-image.jpg" alt="" v-else="category.image">
+                                <img class="rounded" width="60" :src="category.image.url" alt="" v-if="category.image">
+                                <img class="rounded" width="60"
+                                    src="https://lh3.googleusercontent.com/d/1HIRzQeKdRoKE7FaWR_D_uUjVuy1pSBuo=s220"
+                                    alt="" v-else="category.image">
                             </th>
                             <th scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -82,12 +86,12 @@ const deleteTaskCategory = (id) => {
                                         class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                     {{ __("edit") }}
                                     </Link>
-                                
-                                <Link @click="deleteTaskCategory(category.id)"
-                                    v-if="$page.props.user.permissions.includes('task-categories.destroy')"
-                                    class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
-                                {{ __("delete") }}</Link>
-                            </span>
+
+                                    <Link @click="deleteTaskCategory(category.id)"
+                                        v-if="$page.props.user.permissions.includes('task-categories.destroy')"
+                                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                                    {{ __("delete") }}</Link>
+                                </span>
                             </td>
                         </tr>
                     </tbody>

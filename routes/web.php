@@ -10,7 +10,10 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 //No auth routes
-Route::get('/', [DashboardController::class, "index"]);
+Route::get(
+    '/',
+    [DashboardController::class, "index"]
+);
 
 // change language
 Route::get("lang/{lang}", [LanguageController::class, "switchLang"])->name("lang");

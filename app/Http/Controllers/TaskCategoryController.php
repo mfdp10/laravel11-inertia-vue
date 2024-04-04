@@ -6,21 +6,16 @@ use App\Enums\IsActiveEnum;
 use App\Http\Requests\TaskCategoryRequest;
 use App\Models\TaskCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Dropbox\Client;
 
 class TaskCategoryController extends Controller
 {
     public function index()
     {
-        // $is_active = [];
-        // foreach (IsActive::cases() as $value) {
-        //     $is_active[$value->name] = __("is_active." . $value->value);
-        // }
-        //App::setlocale("es");
-        //return __("is_active." . IsActive::YES->value);
         $task_categories = TaskCategory::with('image')->paginate(env("NUMBER_ITEMS_PER_PAGE"));
         return inertia("TaskCategories/Index", ["task_categories" => $task_categories]);
-        //return inertia("TaskCategories/Index", ["task_categories" => $task_categories, "is_active" => $is_active]);
     }
 
     public function create()
@@ -31,14 +26,32 @@ class TaskCategoryController extends Controller
 
     public function store(TaskCategoryRequest $request)
     {
-        // dd($request);
-
-        $taskCategory = TaskCategory::create($request->validated());
+        $file_name = null;
+        $file_url = null;
 
         if ($request->file("fileName")) {
-            $url = Storage::disk('public')->put("task-categories", $request->file("fileName"));
 
-            $taskCategory->image()->create(["url" => $url]);
+            $url = Storage::disk('google')->put("task-categories", $request->file("fileName"));
+            $file_name = str_replace("task-categories/", "", $url);
+            $public_link = Storage::disk('google')->url("task-categories/" . $file_name);
+
+            $file_url = str_replace(
+                "https://drive.google.com/uc",
+                "https://drive.google.com/thumbnail",
+                $public_link
+            );
+        }
+
+        $taskCategory = TaskCategory::create(
+            [
+                'name' => $request->name,
+                "image_name" => $file_name,
+                'is_active' => $request->is_active,
+            ]
+        );
+
+        if ($file_name) {
+            $taskCategory->image()->create(["url" => $file_url]);
         }
 
         return redirect()->route("task-categories.index");
@@ -57,26 +70,58 @@ class TaskCategoryController extends Controller
 
     public function update(TaskCategoryRequest $request, TaskCategory $taskCategory)
     {
-        //dd($request);
-        $taskCategory->update($request->validated());
+        $file_name = null;
+        $file_url = null;
+        $is_new_image = false;
 
         if ($request->file("fileName")) {
             if ($request->get("prev_image")) {
-                $old_image = str_replace("/storage", "", $request->get("prev_image"));
-                Storage::disk('public')->delete($old_image);
-                $url = Storage::disk('public')->put("task-categories", $request->file("fileName"));
-                $taskCategory->image()->update(["url" => $url]);
+
+                Storage::disk('google')->delete("task-categories/" . $request->image_name);
+
+                $url = Storage::disk('google')->put("task-categories", $request->file("fileName"));
+                $file_name = str_replace("task-categories/", "", $url);
+                $public_link = Storage::disk('google')->url("task-categories/" . $file_name);
+
+                $file_url = str_replace(
+                    "https://drive.google.com/uc",
+                    "https://drive.google.com/thumbnail",
+                    $public_link
+                );
             } else {
-                $url = Storage::disk('public')->put("task-categories", $request->file("fileName"));
-                $taskCategory->image()->create(["url" => $url]);
+                $url = Storage::disk('google')->put("task-categories", $request->file("fileName"));
+                $file_name = str_replace("task-categories/", "", $url);
+                $public_link = Storage::disk('google')->url("task-categories/" . $file_name);
+
+                $file_url = str_replace(
+                    "https://drive.google.com/uc",
+                    "https://drive.google.com/thumbnail",
+                    $public_link
+                );
+                $is_new_image = true;
             }
         } else {
             if (!$request->get("filePreview")) { //delete existing image
                 if ($request->get("prev_image")) {
-                    $old_image = str_replace("/storage", "", $request->get("prev_image"));
-                    Storage::disk('public')->delete($old_image);
-                    $taskCategory->image()->delete(["url" => $request->get("prev_image")]);
+                    Storage::disk('google')->delete("task-categories/" . $request->image_name);
+                    $taskCategory->image()->delete(["url" => $request->image_name]);
                 }
+            }
+        }
+
+        $taskCategory->update(
+            [
+                'name' => $request->name,
+                "image_name" => $file_name,
+                'is_active' => $request->is_active,
+            ]
+        );
+
+        if ($file_name) {
+            if ($is_new_image) {
+                $taskCategory->image()->create(["url" => $file_url]);
+            } else {
+                $taskCategory->image()->update(["url" => $file_url]);
             }
         }
 
@@ -85,10 +130,9 @@ class TaskCategoryController extends Controller
 
     public function destroy(TaskCategory $taskCategory)
     {
-        $img = TaskCategory::with('image')->find($taskCategory->id);
-        if ($img->image) {
-            Storage::disk('public')->delete($img->image->url);
-            $taskCategory->image()->delete(["url" => $img->image->url]);
+        if ($taskCategory->image_name) {
+            Storage::disk('google')->delete("task-categories/" . $taskCategory->image_name);
+            $taskCategory->image()->delete(["url" => $taskCategory->image_name]);
         }
         $taskCategory->delete();
 
