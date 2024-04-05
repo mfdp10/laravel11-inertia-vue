@@ -16,22 +16,22 @@ class CustomerSeeder extends Seeder
         Customer::create([
             "first_name" => "Mauricio",
             "last_name" => "Di Paolo",
-            "company" => "",
+            "company" => "Mauricio's company",
             "phone" => "966727354",
             "mobile" => "626908953",
             "id_card" => "49250146Q",
             "email" => "mfdp10@gmail.com",
-            "comments" => ""
+            "comments" => "comments by Mau"
         ]);
         Customer::create([
             "first_name" => "Gisela",
             "last_name" => "Formiconi",
-            "company" => "",
+            "company" => "Gisela's company",
             "phone" => "966727354",
             "mobile" => "697908953",
             "id_card" => "29250146Q",
             "email" => "gise077@gmail.com",
-            "comments" => ""
+            "comments" => "comments by Gise"
         ]);
     }
 }

@@ -35,7 +35,9 @@ const props = defineProps({
                 role="alert">
                 <div class="flex flex-col sm:flex-row">
                     <img class="rounded w-60 h-60" :src="'/storage/' + customer.image.url" alt="" v-if="customer.image">
-                    <img class="rounded w-60 h-60" src="/storage/no-image.jpg" alt="" v-else="customer.image">
+                    <img class="rounded w-60 h-60"
+                        src="https://lh3.googleusercontent.com/d/1HIRzQeKdRoKE7FaWR_D_uUjVuy1pSBuo=s220" alt=""
+                        v-else="customer.image">
                     <div class="flex flex-col ml-4 sm:mt-0 mt-4">
                         <p><b>{{ __("customer_name_label") }}: </b>{{ customer.first_name }}</p>
                         <p><b>{{ __("customer_last_label") }}: </b>{{ customer.last_name }}</p>
@@ -49,7 +51,6 @@ const props = defineProps({
                     </div>
                 </div>
             </div>
-
 
         </div>
     </AppLayout>

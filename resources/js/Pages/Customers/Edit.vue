@@ -28,10 +28,11 @@ const form = useForm({
     id_card: props.customer.id_card,
     email: props.customer.email,
     comments: props.customer.comments,
+    image_name: props.customer.image_name,
     is_active: props.customer.is_active,
     fileName: "",
-    filePreview: props.customer.image ? "/storage/" + props.customer.image.url : "",
-    prev_image: props.customer.image ? "/storage/" + props.customer.image.url : "",
+    filePreview: props.customer.image ? props.customer.image.url : "",
+    prev_image: props.customer.image ? props.customer.image.url : "",
     is_active_ops: props.is_active_ops,
     _method: "put",
 })
@@ -46,7 +47,7 @@ const form = useForm({
                 __("customer").toLowerCase() }}</h1>
         </template>
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            {{ customer }}
+
             <div class="p-4 text-sm mb-4 text-gray-800 rounded-lg bg-gray-50 dark:bg-gray-800 dark:text-gray-300"
                 role="alert">
                 <Link :href="route('customers.index')"

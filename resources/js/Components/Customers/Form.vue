@@ -61,7 +61,8 @@ const deleteImage = function ($event) {
                 <div class="grid grid-cols-2 sm:grid-cols-2 gap-4 mb-4">
                     <div>
                         <img class="rounded" width="50%" v-if="form.filePreview" :src="form.filePreview" alt="fileName">
-                        <img class="rounded" width="50%" v-else="form.filePreview" src="/storage/no-image.jpg" alt="">
+                        <img class="rounded" width="50%" v-else="form.filePreview"
+                            src="https://lh3.googleusercontent.com/d/1HIRzQeKdRoKE7FaWR_D_uUjVuy1pSBuo=s220" alt="">
                     </div>
                     <div>
                         <InputFile @file-updated="captureFile($event)" />

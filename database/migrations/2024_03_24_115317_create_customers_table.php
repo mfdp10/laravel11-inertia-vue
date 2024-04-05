@@ -22,7 +22,8 @@ return new class extends Migration
             $table->string("id_card", 10)->nullable();
             $table->string("email", 80)->nullable();
             $table->string("comments", 255)->nullable();
-            $table->string("is_active")->default(IsActiveEnum::YES->value);;
+            $table->string("image_name", 100)->nullable();
+            $table->string("is_active", 3)->default(IsActiveEnum::YES->value);;
             $table->timestamps();
         });
     }
