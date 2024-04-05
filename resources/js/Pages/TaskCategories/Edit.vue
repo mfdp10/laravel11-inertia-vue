@@ -38,7 +38,7 @@ const form = useForm({
                 __("task_category").toLowerCase() }}</h1>
         </template>
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <!-- {{ form }} -->
+
             <div class="p-4 text-sm mb-4 text-gray-800 rounded-lg bg-gray-50 dark:bg-gray-800 dark:text-gray-300"
                 role="alert">
                 <Link :href="route('task-categories.index')"

@@ -426,12 +426,12 @@ const logout = () => {
                         </ResponsiveNavLink>
                     </div>
                     <div class="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('tasks.*')">
                             {{ __("tasks") }}
                         </ResponsiveNavLink>
                     </div>
                     <div class="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('products.*')">
                             {{ __("products") }}
                         </ResponsiveNavLink>
                     </div>
@@ -441,7 +441,7 @@ const logout = () => {
                         </ResponsiveNavLink>
                     </div>
                     <div class="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('roles.*')">
                             {{ __("roles") }}
                         </ResponsiveNavLink>
                     </div>

@@ -10,13 +10,7 @@ defineProps({
     task_categories: {
         type: Object,
         required: true
-    },
-    image: { type: String }
-
-    // is_active: {
-    //     type: Object,
-    //     required: true
-    // }
+    }
 })
 
 const deleteTaskCategory = (id) => {
@@ -33,7 +27,6 @@ const deleteTaskCategory = (id) => {
             </h1>
         </template>
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            {{ image }}
             <div class="p-4 text-sm mb-4 text-gray-800 rounded-lg bg-gray-50 dark:bg-gray-800 dark:text-gray-300"
                 role="alert" v-if="$page.props.user.permissions.includes('task-categories.create')">
                 <Link :href="route('task-categories.create')"

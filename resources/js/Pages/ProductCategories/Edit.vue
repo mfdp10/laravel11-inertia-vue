@@ -20,10 +20,11 @@ const props = defineProps({
 
 const form = useForm({
     name: props.product_category.name,
+    image_name: props.product_category.image_name,
     is_active: props.product_category.is_active,
     fileName: "",
-    filePreview: props.product_category.image ? "/storage/" + props.product_category.image.url : "",
-    prev_image: props.product_category.image ? "/storage/" + props.product_category.image.url : "",
+    filePreview: props.product_category.image ? props.product_category.image.url : "",
+    prev_image: props.product_category.image ? props.product_category.image.url : "",
     is_active_ops: props.is_active_ops,
     _method: "put",
 })

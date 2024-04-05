@@ -4,11 +4,25 @@
     "functions": {
         "api/index.php": { "runtime": "vercel-php@0.6.0" }
     },
-    "routes": [{
-        "src": "/(.*)",
-        "dest": "/api/index.php"
-    }],
-    "env": {
+    "routes": [
+        {
+          "src": "/build/(.*)",
+          "dest": "/public/build/"
+        },
+        {
+          "src": "/resources/(.*)",
+          "dest": "/public/resources/"
+        },
+        {
+          "src": "/favicon/(.*)",
+          "dest": "/public/favicon/"
+        },
+        {
+          "src": "/(.*)",
+          "dest": "/api/index.php"
+        }
+      ],
+        "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "true",
         "APP_KEY":"base64:ZZ7GjhoBdp3i9dOlyMJu3vLxh8pijnLeZHxOjdbX9Ww=",
