@@ -34,7 +34,7 @@ const props = defineProps({
             <div class="p-4 text-sm mb-4 text-gray-800 rounded-lg bg-gray-50 dark:bg-gray-800 dark:text-gray-300"
                 role="alert">
                 <div class="flex flex-col sm:flex-row">
-                    <img class="rounded w-60 h-60" :src="'/storage/' + customer.image.url" alt="" v-if="customer.image">
+                    <img class="rounded w-60 h-60" :src="customer.image.url" alt="" v-if="customer.image">
                     <img class="rounded w-60 h-60"
                         src="https://lh3.googleusercontent.com/d/1HIRzQeKdRoKE7FaWR_D_uUjVuy1pSBuo=s220" alt=""
                         v-else="customer.image">

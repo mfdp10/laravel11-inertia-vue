@@ -21,4 +21,10 @@ class ProductCategory extends Model
     {
         return $this->morphOne(Image::class, "imageable");
     }
+
+    //Many to many relationship
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
+    }
 }

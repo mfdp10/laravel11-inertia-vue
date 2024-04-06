@@ -4,6 +4,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TaskCategoryController;
 use Illuminate\Support\Facades\App;
@@ -24,7 +25,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::resource("/roles", RoleController::class)->names("roles");
     Route::resource("/tasks", TaskCategoryController::class)->names("tasks");
     Route::resource("/customers", CustomerController::class)->names("customers");
-    Route::resource("/products", TaskCategoryController::class)->names("products");
+    Route::resource("/products", ProductController::class)->names("products");
     Route::resource("/task-categories", TaskCategoryController::class)->names("task-categories");
     Route::resource("/product-categories", ProductCategoryController::class)->names("product-categories");
 });

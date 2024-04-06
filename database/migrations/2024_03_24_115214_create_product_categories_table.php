@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('product_categories', function (Blueprint $table) {
             $table->id();
-            $table->string("name", 100);
+            $table->string("name", 100)->unique();
             $table->string("image_name", 100)->nullable();
             $table->string("is_active", 3)->default(IsActiveEnum::YES->value);
             $table->timestamps();
