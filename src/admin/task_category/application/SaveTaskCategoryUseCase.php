@@ -12,7 +12,7 @@ use Src\admin\task_category\domain\value_objects\ImageName;
 use Src\admin\task_category\domain\value_objects\Name;
 use App\Traits\GoogleDriveImageUpload;
 
-class SaveUseCase
+class SaveTaskCategoryUseCase
 {
     use GoogleDriveImageUpload;
 
