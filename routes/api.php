@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+// Route::get('/us', function () {
+//     return response()->json("hola");
+// });
+
+Route::prefix('task_categories')->group(base_path('src/admin/task_category/infrastructure/routes/api.php'));

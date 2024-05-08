@@ -6,7 +6,6 @@ use App\Enums\IsActiveEnum;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use App\Models\ProductCategory;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,7 +14,6 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::with('pictures')->with("product_categories")->paginate(env("NUMBER_ITEMS_PER_PAGE"));
-        //dump($products);
         return inertia("Products/Index", ["products" => $products]);
     }
 
@@ -28,7 +26,6 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request)
     {
-        //dd($request);
         $file_name = null;
         $file_url = null;
 
